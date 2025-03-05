@@ -16,6 +16,7 @@ body {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .character {
@@ -24,6 +25,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 150px;
+    margin: 10px;
 }
 
 .character h2 {
@@ -32,4 +34,10 @@ body {
 
 .character button {
     margin-top: 10px;
+}
+
+#earnMoneyButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
 }
