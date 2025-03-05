@@ -1,5 +1,6 @@
 let money = 0;
 const moneyElement = document.getElementById("moneyCount");
+const earnMoneyButton = document.getElementById("earnMoneyButton");
 
 const characters = [
     { name: "Homer", baseCost: 10, baseEarnings: 1, count: 0 },
@@ -53,6 +54,11 @@ function setupCharacters() {
         charactersContainer.appendChild(characterElement);
     });
 }
+
+earnMoneyButton.addEventListener("click", () => {
+    money += 1;
+    updateMoney();
+});
 
 setupCharacters();
 setInterval(generateMoney, 1000);
