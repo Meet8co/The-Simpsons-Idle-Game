@@ -12,13 +12,6 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#stats {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    text-align: right;
-}
-
 #characters {
     display: flex;
     justify-content: space-around;
@@ -47,4 +40,25 @@ body {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 1em;
+}
+
+#achievements {
+    margin-top: 30px;
+}
+
+#achievements h2 {
+    font-size: 1.5em;
+}
+
+#achievementList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#achievementList li {
+    background-color: #e0ffee;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
