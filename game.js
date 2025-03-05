@@ -1,5 +1,7 @@
 let money = 0;
+let totalEarnings = 0;
 const moneyElement = document.getElementById("moneyCount");
+const totalEarningsElement = document.getElementById("totalEarnings");
 const earnMoneyButton = document.getElementById("earnMoneyButton");
 
 const characters = [
@@ -12,6 +14,7 @@ const characters = [
 
 function updateMoney() {
     moneyElement.textContent = money.toFixed(2);
+    totalEarningsElement.textContent = totalEarnings.toFixed(2);
 }
 
 function buyCharacter(index) {
@@ -34,7 +37,9 @@ function updateCharacter(index) {
 
 function generateMoney() {
     characters.forEach(character => {
-        money += character.count * character.baseEarnings;
+        const earnings = character.count * character.baseEarnings;
+        money += earnings;
+        totalEarnings += earnings;
     });
     updateMoney();
 }
@@ -57,6 +62,7 @@ function setupCharacters() {
 
 earnMoneyButton.addEventListener("click", () => {
     money += 1;
+    totalEarnings += 1;
     updateMoney();
 });
 
