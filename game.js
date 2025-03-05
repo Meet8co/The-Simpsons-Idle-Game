@@ -1,7 +1,5 @@
 let money = 0;
-let totalEarnings = 0;
 const moneyElement = document.getElementById("moneyCount");
-const totalEarningsElement = document.getElementById("totalEarnings");
 const earnMoneyButton = document.getElementById("earnMoneyButton");
 
 const characters = [
@@ -12,9 +10,17 @@ const characters = [
     { name: "Maggie", baseCost: 200, baseEarnings: 20, count: 0 },
 ];
 
+const achievements = [
+    { name: "First Dollar", condition: () => money >= 1, unlocked: false },
+    { name: "Hundredaire", condition: () => money >= 100, unlocked: false },
+    { name: "Thousandaire", condition: () => money >= 1000, unlocked: false },
+    { name: "First Homer", condition: () => characters[0].count >= 1, unlocked: false },
+    { name: "Five Homers", condition: () => characters[0].count >= 5, unlocked: false },
+];
+
 function updateMoney() {
     moneyElement.textContent = money.toFixed(2);
-    totalEarningsElement.textContent = totalEarnings.toFixed(2);
+    checkAchievements();
 }
 
 function buyCharacter(index) {
@@ -37,9 +43,7 @@ function updateCharacter(index) {
 
 function generateMoney() {
     characters.forEach(character => {
-        const earnings = character.count * character.baseEarnings;
-        money += earnings;
-        totalEarnings += earnings;
+        money += character.count * character.baseEarnings;
     });
     updateMoney();
 }
@@ -60,12 +64,33 @@ function setupCharacters() {
     });
 }
 
+function setupAchievements() {
+    const achievementList = document.getElementById("achievementList");
+    achievements.forEach((achievement, index) => {
+        const achievementElement = document.createElement("li");
+        achievementElement.id = `achievement${index}`;
+        achievementElement.textContent = achievement.name;
+        achievementElement.style.display = "none";
+        achievementList.appendChild(achievementElement);
+    });
+}
+
+function checkAchievements() {
+    achievements.forEach((achievement, index) => {
+        if (!achievement.unlocked && achievement.condition()) {
+            achievement.unlocked = true;
+            const achievementElement = document.getElementById(`achievement${index}`);
+            achievementElement.style.display = "block";
+        }
+    });
+}
+
 earnMoneyButton.addEventListener("click", () => {
     money += 1;
-    totalEarnings += 1;
     updateMoney();
 });
 
 setupCharacters();
+setupAchievements();
 setInterval(generateMoney, 1000);
 updateMoney();
